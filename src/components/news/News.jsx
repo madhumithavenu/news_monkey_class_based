@@ -17,6 +17,10 @@ export class News extends Component {
         category: PropTypes.string
     }
 
+    capitalizeFirstLetter(string){
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     constructor(props) {
         super(props);
         this.state = {
