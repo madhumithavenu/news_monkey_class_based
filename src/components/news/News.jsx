@@ -34,6 +34,7 @@ export class News extends Component {
             console.log("No more Articles");
         }
         else{
+            this.setState({...this.state, loading: true});
             let res =await fetch(`https://newsapi.org/v2/everything?q=tesla&from=2023-10-14&sortBy=publishedAt&apiKey=bd002a1cf4f64969a8819fcbfe3a190f&page=${this.state.page + 1}&pageSize=10`);
             let data = await res.json();
             console.log(data.articles);
@@ -48,6 +49,7 @@ export class News extends Component {
     }
 
     async handlePreviousClick(){
+        this.setState({...this.state, loading: true});
         let res =await fetch(`https://newsapi.org/v2/everything?q=tesla&from=2023-10-14&sortBy=publishedAt&apiKey=bd002a1cf4f64969a8819fcbfe3a190f&page=${this.state.page + 1}&pageSize=10`);
         let data = await res.json();
         this.setState({
