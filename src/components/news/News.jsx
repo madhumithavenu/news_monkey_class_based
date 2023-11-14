@@ -4,6 +4,18 @@ import Spinner from '../spinner/Spinner';
 
 export class News extends Component {
 
+    static defaultProps = {
+        country: 'in',
+        pageSize: 10,
+        category: 'general'
+    }
+
+    static propTypes = {
+        country: PropTypes.string,
+        pageSize: PropTypes.number,
+        category: PropTypes.string
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -35,7 +47,7 @@ export class News extends Component {
         }
         else{
             this.setState({...this.state, loading: true});
-            let res =await fetch(`https://newsapi.org/v2/everything?q=tesla&from=2023-10-14&sortBy=publishedAt&category=${this.props.category}&apiKey=bd002a1cf4f64969a8819fcbfe3a190f&page=${this.state.page + 1}&pageSize=10`);
+            let res =await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bd002a1cf4f64969a8819fcbfe3a190f&page=${this.state.page + 1}&pageSize=10`);
             let data = await res.json();
             console.log(data.articles);
             this.setState({
@@ -50,7 +62,7 @@ export class News extends Component {
 
     async handlePreviousClick(){
         this.setState({...this.state, loading: true});
-        let res =await fetch(`https://newsapi.org/v2/everything?q=tesla&from=2023-10-14&sortBy=publishedAt&category=${this.props.category}&apiKey=bd002a1cf4f64969a8819fcbfe3a190f&page=${this.state.page + 1}&pageSize=10`);
+        let res =await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bd002a1cf4f64969a8819fcbfe3a190f&page=${this.state.page + 1}&pageSize=10`);
         let data = await res.json();
         this.setState({
             ...this.state,
@@ -59,6 +71,11 @@ export class News extends Component {
             totalArticles: data.totalResults,
         })
     }
+
+    fetch(
+        "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=4db083447ccd4921831926d5eecbc2fc"
+      )
+    
 
     render() {
         console.log(this.state.articles);
