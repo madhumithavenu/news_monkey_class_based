@@ -8,7 +8,7 @@ export class App extends Component {
     return (
       <div>
       <Navbar />
-      <News />
+      <News category="health"/>
       </div>
     )
   }
