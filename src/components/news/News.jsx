@@ -29,17 +29,20 @@ export class News extends Component {
         this.handlePreviousClick = this.handlePreviousClick.bind(this);
     }
 
-    componentDidMount() {
-        fetch(
-            "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=bd002a1cf4f64969a8819fcbfe3a190f"
-        ).then(res => res.json()).then(data => {
-            this.setState({ 
-                ...this.state,
-                articles: data.articles,
-                totalArticles: data.totalResults,
-                loading: false
-            });
+    async updateNews(pageNo){
+        let res = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bd002a1cf4f64969a8819fcbfe3a190f&page=${this.state.page + 1}&pageSize=10`)
+        let data = await res.json();
+        this.setState({ 
+            articles: data.articles,
+            loading: false,
+            page: pageNo,
+            totalArticles: data.totalResults
         });
+
+    }
+
+    componentDidMount() {
+        this.updateNews(1);
     }
 
     async handleNextClick(){
