@@ -1,10 +1,12 @@
-
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <h1>Hello</h1>
-  );
+export class App extends Component {
+  render() {
+    return (
+      <div>App</div>
+    )
+  }
 }
 
-export default App;
+export default App
