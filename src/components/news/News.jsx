@@ -90,7 +90,11 @@ export class News extends Component {
                                 <NewsItem
                                     title={item.title}
                                     description={item.description}
-                                    imageUrl={item.urlToImage}
+                                    imageUrl={(item.urlToImage != null) ? item.urlToImage: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-photos%2Fsave-nature&psig=AOvVaw1xoZlU9tmj0mOjruAxWwWe&ust=1700040900732000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCLidz4GYw4IDFQAAAAAdAAAAABAE"}
+                                    url={item.url}
+                                    author={item.author}
+                                    date={item.publishedAt}
+                                    source={item.source.name}
                                 />
                             </div>)
             
