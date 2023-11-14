@@ -28,6 +28,35 @@ export class News extends Component {
         });
     }
 
+    async handleNextClick(){
+        if(this.state.page + 1 > Math.ceil(this.state.totalArticles / 10)){
+            console.log("No more Articles");
+        }
+        else{
+            let res =await fetch(`https://newsapi.org/v2/everything?q=tesla&from=2023-10-14&sortBy=publishedAt&apiKey=bd002a1cf4f64969a8819fcbfe3a190f&page=${this.state.page + 1}&pageSize=10`);
+            let data = await res.json();
+            console.log(data.articles);
+            this.setState({
+                ...this.state,
+                page: this.state.page + 1,
+                articles: data.articles,
+                totalArticles: data.totalResults,
+
+            })
+        }
+    }
+
+    async handlePreviousClick(){
+        let res =await fetch(`https://newsapi.org/v2/everything?q=tesla&from=2023-10-14&sortBy=publishedAt&apiKey=bd002a1cf4f64969a8819fcbfe3a190f&page=${this.state.page + 1}&pageSize=10`);
+        let data = await res.json();
+        this.setState({
+            ...this.state,
+            page: this.state.page - 1,
+            articles: data.articles,
+            totalArticles: data.totalResults,
+        })
+    }
+
     render() {
         console.log(this.state.articles);
         return (
