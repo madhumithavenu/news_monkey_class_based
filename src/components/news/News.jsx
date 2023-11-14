@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NewsItem from '../newsitem/NewsItem'
 import Spinner from '../spinner/Spinner';
+import PropTypes from 'prop-types';
 
 export class News extends Component {
 
@@ -30,7 +31,7 @@ export class News extends Component {
 
     componentDidMount() {
         fetch(
-            "https://newsapi.org/v2/everything?q=tesla&from=2023-10-14&sortBy=publishedAt&apiKey=bd002a1cf4f64969a8819fcbfe3a190f"
+            "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=bd002a1cf4f64969a8819fcbfe3a190f"
         ).then(res => res.json()).then(data => {
             this.setState({ 
                 ...this.state,
@@ -71,11 +72,6 @@ export class News extends Component {
             totalArticles: data.totalResults,
         })
     }
-
-    fetch(
-        "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=4db083447ccd4921831926d5eecbc2fc"
-      )
-    
 
     render() {
         console.log(this.state.articles);
